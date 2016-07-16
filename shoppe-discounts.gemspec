@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Enable discount codes during purchase}
   spec.description   = %q{Sometimes when running a marketing campaign, you want to give discount codes. This shoppe extension gem helps you do just that}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/daltonrenaldo/shoppe-discounts"
 
   spec.files         = Dir['{lib}/**/*', 'Rakefile', 'CODE_OF_CONDUCT.md' 'README.md'] # `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.require_paths = ["lib"]
