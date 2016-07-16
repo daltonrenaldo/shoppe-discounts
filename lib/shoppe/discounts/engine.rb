@@ -1,8 +1,10 @@
 module Shoppe
   module Discounts
     class Engine < ::Rails::Engine
-
       initializer "shoppe.discounts.initializer" do |app|
+        require 'shoppe/discounts/order_extensions'
+        Shoppe::Order.include Shoppe::Discounts::OrderExtensions
+
         Shoppe::Discounts.setup do |config|
           config.app_root = app.root
           config.root = root
@@ -16,11 +18,6 @@ module Shoppe
           end
         end
       end
-
-      config.to_prepare do
-        Rails.application.config.assets.precompile += %w(shoppe-discounts/application.scss)
-      end
-
     end
   end
 end

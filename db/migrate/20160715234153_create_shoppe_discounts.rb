@@ -10,13 +10,5 @@ class CreateShoppeDiscounts < ActiveRecord::Migration
       t.boolean :active, default: false
       t.datetime :expire_at
     end
-
-    create_table :shoppe_order_discounts do |t|
-      t.integer :order_id
-      t.integer :discount_id
-    end
-
-    add_index :shoppe_order_discounts, :order_id
-    add_index :shoppe_order_discounts, :discount_id
   end
 end
