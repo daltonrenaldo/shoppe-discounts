@@ -1,0 +1,21 @@
+.table
+  %table.data
+    %thead
+      %tr
+        %th{:width => '20%'}= t('shoppe.discount_codes.code')
+        %th{:width => '10%'}= t('shoppe.discount_codes.amount')
+        %th{:width => '40%'}= t('shoppe.discount_codes.description')
+        %th{:width => '5%'}= t('shoppe.discount_codes.time_used')
+        %th{:width => '5%'}= t('shoppe.discount_codes.max_uses')
+        %th{:width => '5%'}= t('shoppe.discount_codes.active')
+        %th{:width => '15%'}= t('shoppe.discount_codes.expire_at')
+    %tbody
+      - discounts.each do |discount|
+        %tr
+          %td= link_to discount.code, edit_discount_path(discount.id)
+          %td= pretty_discount discount
+          %td= discount.description
+          %td= discount.use_count
+          %td= discount.max_uses
+          %td= discount.active?
+          %td= discount.expire_at.strftime("%a %b %e, %Y - %I:%M %p")

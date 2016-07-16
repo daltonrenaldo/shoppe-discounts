@@ -1,0 +1,4 @@
+= content_for :header do
+  %p.buttons=link_to t('shoppe.discounts.back_to_discounts'), :discounts, :class => 'button green'
+  %h2{style: "background-image: url(#{asset_url('shoppe/icons/wallet.svg')})"}= t('shoppe.discounts.edit_discount')
+= render partial: 'form'

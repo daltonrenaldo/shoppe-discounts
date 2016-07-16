@@ -1,0 +1,41 @@
+= form_for @discount do |f|
+  = f.error_messages
+  = field_set_tag  t('shoppe.discounts.discount_information') do
+    .splitContainer
+      %dl.third
+        %dt= f.label :code, t('shoppe.discounts.code')
+        %dd= f.text_field :code, :class => 'text focus', :placeholder => t('shoppe.discounts.code_placeholder')
+      %dl.third
+        %dt= f.label :value, t('shoppe.discounts.value')
+        %dd= f.text_field :value, :class => 'text'
+      %dl.third
+        %dt= f.label :unit, t('shoppe.discounts.unit')
+        %dd= f.select :unit, ['cash', 'percentage'], :class => 'chosen'
+    %dl
+      %dt= f.label :description, t('shoppe.discounts.description')
+      %dd= f.text_area :description, :class => 'text', :placeholder => t('shoppe.discounts.description_placeholder')
+    .splitContainer
+      %dl.half.expire_at
+        %dt= f.label :expire_at, t('shoppe.discounts.expire_at')
+        %dd= f.datetime_select :expire_at, :start_year => Time.current.year, :ampm => true, :prompt => {:day => 'Choose day', :month => 'Choose month', :year => 'Choose year'}
+    .splitContainer
+      %dl.quarter
+        %dt= f.label :max_uses, t('shoppe.discounts.max_uses')
+        %dd= f.number_field :max_uses, :min => -1, :step => 1
+        %dd
+          %small= t('shoppe.discounts.max_uses_unlimited')
+      %dl.quarter
+        %dt= f.label :active, t('shoppe.discounts.active')
+        %dd= f.check_box :active
+
+
+  %p.submit
+    - unless @discount.new_record?
+      %span.right= link_to t('shoppe.delete') , @discount, :class => 'button purple', :method => :delete, :data => {:confirm => t('shoppe.discounts.delete_confirm')}
+    = f.submit t('shoppe.submit'),  :class => 'button green'
+    = link_to t('shoppe.cancel'), :discounts, :class => 'button'
+:scss
+  .expire_at select {
+    width: 70px !important;
+    display: inline-block;
+  }

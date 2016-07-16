@@ -1,0 +1,23 @@
+en:
+  shoppe:
+    navigation:
+      admin_primary:
+        discounts: Discount Codes
+    discounts:
+      code: Code
+      code_placeholder: SHOPPE_DISCOUNT10
+      description: Description
+      description_placeholder: 'This discount code is for...'
+      discount_information: Discount Code Information
+      discounts: Discount Codes
+      max_uses: 'Maximun Allowed Use*'
+      max_uses_unlimited: '*unlimited when -1'
+      new_discount: New Discount Code
+      edit_discount: 'Edit Discount Code'
+      unit: 'Cash/Percent'
+      value: Discount Value
+      back_to_discounts: 'Back To Discounts'
+      delete_confirm: 'Are you sure you wish to remove this discount?'
+      update_notice: 'Discount Code Successfully Updated'
+      create_notice: 'Discount Code Successfully Created'
+      destroy_notice: 'Discount Code Successfully Deleted'
