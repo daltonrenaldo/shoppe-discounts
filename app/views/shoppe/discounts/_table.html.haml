@@ -18,4 +18,4 @@
           %td= discount.use_count
           %td= discount.max_uses
           %td= discount.active?
-          %td= discount.expire_at.strftime("%a %b %e, %Y - %I:%M %p")
+          %td= discount.expire_at.try(:strftime, "%a %b %e, %Y - %I:%M %p")
