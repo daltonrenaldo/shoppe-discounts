@@ -6,6 +6,8 @@ module Shoppe
       included do
         belongs_to :discount, class_name: 'Shoppe::Discount'
 
+        after_confirmation :increment_discount_use_count, if: :discount
+
         # renamed total to total_before_discount
         alias_method :total_before_discount, :total
         alias_method :total_cost_before_discount, :total_cost
@@ -25,6 +27,10 @@ module Shoppe
       end
 
       private
+
+      def increment_discount_use_count
+        discount.increment(:use_count).save
+      end
 
       def discount_value(original_cost)
         return BigDecimal(0) unless discount.present?
