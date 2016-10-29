@@ -7,6 +7,7 @@
         %th{:width => '40%'}= t('shoppe.discount_codes.description')
         %th{:width => '5%'}= t('shoppe.discount_codes.time_used')
         %th{:width => '5%'}= t('shoppe.discount_codes.max_uses')
+        %th{:width => '5%'}= t('shoppe.discount_codes.max_uses_per_user')
         %th{:width => '5%'}= t('shoppe.discount_codes.active')
         %th{:width => '15%'}= t('shoppe.discount_codes.expire_at')
     %tbody
@@ -17,5 +18,6 @@
           %td= discount.description
           %td= discount.use_count
           %td= discount.max_uses
+          %td= discount.max_uses_per_user
           %td= discount.active?
           %td= discount.expire_at.try(:strftime, "%a %b %e, %Y - %I:%M %p")

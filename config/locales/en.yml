@@ -11,6 +11,7 @@ en:
       discount_information: Discount Code Information
       discounts: Discount Codes
       max_uses: 'Maximun Allowed Use*'
+      max_uses_per_user: 'Max Use Per User'
       max_uses_unlimited: '*unlimited when -1'
       new_discount: New Discount Code
       edit_discount: 'Edit Discount Code'

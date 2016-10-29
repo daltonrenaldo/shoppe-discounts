@@ -25,6 +25,9 @@
         %dd
           %small= t('shoppe.discounts.max_uses_unlimited')
       %dl.quarter
+        %dt= f.label :max_uses_per_user, t('shoppe.discounts.max_uses_per_user')
+        %dd= f.number_field :max_uses_per_user, :min => 0, :step => 1
+      %dl.quarter
         %dt= f.label :active, t('shoppe.discounts.active')
         %dd= f.check_box :active
 

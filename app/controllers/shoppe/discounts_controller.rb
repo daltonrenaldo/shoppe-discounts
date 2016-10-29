@@ -3,7 +3,7 @@ module Shoppe
     before_action { params[:id] && @discount = Shoppe::Discount.find(params[:id]) }
 
     def index
-      @discounts = Shoppe::Discount.all
+      @discounts = Shoppe::Discount.order('code asc')
     end
 
     def new
@@ -35,7 +35,7 @@ module Shoppe
     private
 
     def safe_params
-      params.require(:discount).permit(:code, :value, :unit, :description, :max_uses, :active, :expire_at)
+      params.require(:discount).permit(:code, :value, :unit, :description, :max_uses, :max_uses_per_user, :active, :expire_at)
     end
 
     def set_discount
