@@ -26,6 +26,10 @@ module Shoppe
         total_cost_before_discount - discount_value(total_cost_before_discount)
       end
 
+      def discount_amount
+        discount_value(total_before_discount)
+      end
+
       private
 
       def increment_discount_use_count
