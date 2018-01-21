@@ -6,6 +6,13 @@ module Shoppe
       included do
         belongs_to :discount, class_name: 'Shoppe::Discount'
 
+        validate do
+          if !self.received? && discount.present?
+            errors.add(:base, "Discount no longer valid") unless discount.active?
+            errors.add(:base, "Discount '#{discount.code}' already used") if customer.present? && customer.overused_discount?(discount)
+          end
+        end
+
         after_confirmation :increment_discount_use_count, if: :discount
 
         # renamed total to total_before_discount
@@ -18,12 +25,15 @@ module Shoppe
 
       # new total method
       def total_with_discount
-        total_before_discount - discount_value(total_before_discount)
+        subtotal = total_before_discount - discount_value(total_before_discount)
+        return 0 if subtotal <= 0
+        subtotal
       end
 
       # new total_cost method
       def total_cost_with_discount
-        total_cost_before_discount - discount_value(total_cost_before_discount)
+        subtotal = total_cost_before_discount - discount_value(total_cost_before_discount)
+        return 0 if subtotal <= 0
       end
 
       def discount_amount
