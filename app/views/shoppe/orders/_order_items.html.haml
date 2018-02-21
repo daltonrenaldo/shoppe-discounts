@@ -32,14 +32,16 @@
         - if @order.discount.present?
           %tr
             %td.qty 1
-            %td.product= @order.discount.code
             %td.sku
               = pretty_discount(@order.discount)
               DISCOUNT
+            %td.product= @order.discount.code
             %td.money
             %td.money
             %td.money
-            %td.money= number_to_currency(@order.total - @order.total_before_discount)
+            %td.money
+              &ndash;
+              = number_to_currency @order.discount_amount
 
       %tfoot
         %tr
