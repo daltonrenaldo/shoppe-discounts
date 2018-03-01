@@ -35,7 +35,7 @@ module Shoppe
     private
 
     def safe_params
-      params.require(:discount).permit(:code, :value, :unit, :description, :max_uses, :max_uses_per_user, :active, :expire_at)
+      params.require(:discount).permit(:code, :value, :unit, :description, :max_uses, :max_uses_per_user, :minimum_purchase, :active, :expire_at)
     end
 
     def set_discount

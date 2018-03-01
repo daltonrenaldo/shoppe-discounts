@@ -6,10 +6,15 @@ module Shoppe
       included do
         belongs_to :discount, class_name: 'Shoppe::Discount'
 
+        # before_validation do
+        #   discount = nil if discount.present? && purchase_minimum_for_discount_unmet?
+        # end
+
         validate do
           if !self.received? && discount.present?
             errors.add(:base, "Discount no longer valid") unless discount.active?
             errors.add(:base, "Discount '#{discount.code}' already used") if customer.present? && customer.overused_discount?(discount)
+            errors.add(:base, "#{helper.number_to_currency discount.minimum_purchase} minimum purchase required for #{discount.code} discount") if purchase_minimum_for_discount_unmet?
           end
         end
 
@@ -53,6 +58,16 @@ module Shoppe
         else
           (discount.value * original_cost) / BigDecimal(100)
         end
+      end
+
+      def purchase_minimum_for_discount_unmet?
+        discount.minimum_purchase_required? && total_before_discount < discount.minimum_purchase
+      end
+
+      def helper
+        @helper ||= Class.new do
+          include ActionView::Helpers::NumberHelper
+        end.new
       end
 
     end
